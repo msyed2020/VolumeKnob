@@ -84,21 +84,25 @@ tresult PLUGIN_API VolumeKnobProcessor::process (Vst::ProcessData& data)
 		}
 	}
 
-	// this part doesn't work
+	
 
-	/*if (data.numInputs == 1 && data.numOutputs == 1)
+	if (data.numInputs == 1 && data.numOutputs == 1)
 	{
 		float** in = data.inputs[0].channelBuffers32;
 		float** out = data.outputs[0].channelBuffers32;
 
-		for (int32 channel = 0; channel < 2; ++channel)
+		int32 numInChannels = data.inputs[0].numChannels;
+		int32 numOutChannels = data.outputs[0].numChannels;
+		int32 numChannels = std::min(numInChannels, numOutChannels);
+
+		for (int32 channel = 0; channel < numChannels; ++channel)
 		{
 			for (int32 sample = 0; sample < data.numSamples; ++sample)
 			{
 				out[channel][sample] = in[channel][sample] * gain;
 			}
 		}
-	}*/
+	}
 
 	/*if (data.inputParameterChanges)
 	{
