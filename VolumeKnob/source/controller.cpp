@@ -26,6 +26,8 @@ tresult PLUGIN_API VolumeKnobController::initialize (FUnknown* context)
 		kGainId             // Unique parameter ID
 	);
 
+
+
 	//---do not forget to call parent ------
 	tresult result = EditControllerEx1::initialize (context);
 	if (result != kResultOk)
