@@ -32,6 +32,17 @@
 			  style="rotary"
 			  draw-frame="false"
 		/>
+
+		<view class="CKnob"
+          control-tag="1000"
+          size="100, 100, 150, 150"
+          wheel-inc-value="0.01"
+          min-value="0"
+          max-value="1"
+          default-value="1.0"
+          step-value="0.01"
+          transparent="false"
+          />
 	</template>
 
 	<custom>
