@@ -69,7 +69,7 @@ tresult PLUGIN_API VolumeKnobProcessor::process (Vst::ProcessData& data)
 	//--- First : Read inputs parameter changes-----------
 
 	float gain = 1.0f;
-
+	/*
 	if (data.inputParameterChanges)
 	{
 		auto* paramQueue = data.inputParameterChanges->getParameterData(kGainId);
@@ -94,7 +94,7 @@ tresult PLUGIN_API VolumeKnobProcessor::process (Vst::ProcessData& data)
 				out[channel][sample] = in[channel][sample] * gain;
 			}
 		}
-	}
+	}*/
 
 	/*if (data.inputParameterChanges)
 	{
@@ -117,47 +117,34 @@ tresult PLUGIN_API VolumeKnobProcessor::process (Vst::ProcessData& data)
 
 	if (data.numSamples > 0)
 	{
-		//--- ------------------------------------------
-		// here as example a default implementation where we try to copy the inputs to the outputs:
-		// if less input than outputs then clear outputs
-		//--- ------------------------------------------
-		
-		int32 minBus = std::min (data.numInputs, data.numOutputs);
+		int32 minBus = std::min(data.numInputs, data.numOutputs);
 		for (int32 i = 0; i < minBus; i++)
 		{
-			int32 minChan = std::min (data.inputs[i].numChannels, data.outputs[i].numChannels);
+			int32 minChan = std::min(data.inputs[i].numChannels, data.outputs[i].numChannels);
 			for (int32 c = 0; c < minChan; c++)
 			{
-				// do not need to be copied if the buffers are the same
-				if (data.outputs[i].channelBuffers32[c] != data.inputs[i].channelBuffers32[c])
-				{
-					memcpy (data.outputs[i].channelBuffers32[c], data.inputs[i].channelBuffers32[c],
-							data.numSamples * sizeof (Vst::Sample32));
-				}
+				float* in = data.inputs[i].channelBuffers32[c];
+				float* out = data.outputs[i].channelBuffers32[c];
+
+				for (int32 s = 0; s < data.numSamples; s++)
+					out[s] = in[s] * gain;
+
+				data.outputs[i].silenceFlags &= ~(1ULL << c); // not silent
 			}
-			data.outputs[i].silenceFlags = data.inputs[i].silenceFlags;
-				
-			// clear the remaining output buffers
+
 			for (int32 c = minChan; c < data.outputs[i].numChannels; c++)
 			{
-				// clear output buffers
-				memset (data.outputs[i].channelBuffers32[c], 0,
-						data.numSamples * sizeof (Vst::Sample32));
-
-				// inform the host that this channel is silent
-				data.outputs[i].silenceFlags |= ((uint64)1 << c);
+				memset(data.outputs[i].channelBuffers32[c], 0, data.numSamples * sizeof(Vst::Sample32));
+				data.outputs[i].silenceFlags |= (1ULL << c);
 			}
 		}
-		// clear the remaining output buffers
+
 		for (int32 i = minBus; i < data.numOutputs; i++)
 		{
-			// clear output buffers
 			for (int32 c = 0; c < data.outputs[i].numChannels; c++)
 			{
-				memset (data.outputs[i].channelBuffers32[c], 0,
-						data.numSamples * sizeof (Vst::Sample32));
+				memset(data.outputs[i].channelBuffers32[c], 0, data.numSamples * sizeof(Vst::Sample32));
 			}
-			// inform the host that this bus is silent
 			data.outputs[i].silenceFlags = ((uint64)1 << data.outputs[i].numChannels) - 1;
 		}
 	}
