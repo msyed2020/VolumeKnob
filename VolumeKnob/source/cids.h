@@ -14,9 +14,11 @@ static const Steinberg::FUID kVolumeKnobControllerUID (0x30E1A211, 0x70B150DD, 0
 
 #define VolumeKnobVST3Category "Fx"
 
-//------------------------------------------------------------------------
-} // namespace MyCompanyName
-
 enum {
     kGainId = 1000
 };
+
+
+//------------------------------------------------------------------------
+} // namespace MyCompanyName
+
