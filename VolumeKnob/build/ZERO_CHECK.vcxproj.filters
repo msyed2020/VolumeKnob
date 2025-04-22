@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\fredb\vdt_dev\VolumeKnob\VolumeKnob\build\CMakeFiles\646419f246c69956d6116e1395357288\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{18898DE9-870F-3412-ACED-E3BFBD330E4E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
