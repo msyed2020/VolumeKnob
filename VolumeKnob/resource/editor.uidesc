@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <vstgui-ui-description version="1">
 	<fonts>
@@ -14,5 +15,34 @@
 		<attributes name="UIAttributesController"/>
 		<attributes SelectedRow="7" name="UIViewCreatorDataSource"/>
 	</custom>
+	<bitmaps/>
+</vstgui-ui-description>
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts/>
+	<colors/>
+
+	<template class="CViewContainer" name="view" size="300, 300" background-color="~ BlackCColor" background-color-draw-style="filled" >
+		<view class="CAnimKnob" name="Gain"
+			  size="100, 100, 200, 200"
+			  min="0" max="1" default-value="1"
+			  wheel-inc-value="0.01"
+			  style="rotary"
+			  draw-frame="false"
+		/>
+	</template>
+
+	<custom>
+		<attributes name="FocusDrawing"/>
+		<attributes name="VST3Editor" Path="C:/Users/fredb/vdt_dev/VolumeKnob/VolumeKnob/resource/editor.uidesc"/>
+		<attributes name="UIGridController" Grids="1x 1,5x 5,10x 10,12x 12,15x 15"/>
+		<attributes name="UITemplateController" SelectedTemplate="view"/>
+		<attributes name="UIEditController" Version="1" TabSwitchValue="0" EditViewScale="1" EditorSize="0, 0, 500, 545"/>
+		<attributes name="UIAttributesController"/>
+		<attributes name="UIViewCreatorDataSource" SelectedRow="7"/>
+	</custom>
+
 	<bitmaps/>
 </vstgui-ui-description>
