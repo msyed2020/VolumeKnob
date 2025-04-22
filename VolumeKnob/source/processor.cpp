@@ -69,7 +69,9 @@ tresult PLUGIN_API VolumeKnobProcessor::process (Vst::ProcessData& data)
 	//--- First : Read inputs parameter changes-----------
 
 	float gain = 1.0f;
-	/*
+	
+	
+
 	if (data.inputParameterChanges)
 	{
 		auto* paramQueue = data.inputParameterChanges->getParameterData(kGainId);
@@ -82,7 +84,9 @@ tresult PLUGIN_API VolumeKnobProcessor::process (Vst::ProcessData& data)
 		}
 	}
 
-	if (data.numInputs == 1 && data.numOutputs == 1)
+	// this part doesn't work
+
+	/*if (data.numInputs == 1 && data.numOutputs == 1)
 	{
 		float** in = data.inputs[0].channelBuffers32;
 		float** out = data.outputs[0].channelBuffers32;
